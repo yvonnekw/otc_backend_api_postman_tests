@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install dependencies
+        run: npm install @octokit/rest
+        
       - name: Trigger backend CI workflow
         uses: actions/github-script@v5
         with:
