@@ -27,7 +27,7 @@ jobs:
         with:
           repository: yvonnekw/otc_backend
           path: otc_backend
-          ref: main
+          ref: postman_test_branch
 
       - name: Build Spring Boot application
         run: |
