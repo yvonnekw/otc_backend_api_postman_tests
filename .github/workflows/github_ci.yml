@@ -14,7 +14,12 @@ jobs:
     steps:
       - name: Install dependencies
         run: npm install @octokit/rest
-        
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '21'
+
       - name: Trigger backend CI workflow
         uses: actions/github-script@v5
         with:
