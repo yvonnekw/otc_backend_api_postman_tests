@@ -28,19 +28,19 @@ jobs:
           npm install -g newman newman-reporter-htmlextra
 
       # Trigger backend CI workflow
-      - name: Trigger backend CI
-        uses: actions/github-script@v5
-        with:
-          github-token: ${{ secrets.MY_TOKEN }}
-          script: |
-            const { Octokit } = require("@octokit/rest");
-            const octokit = new Octokit({
-              auth: process.env.GITHUB_TOKEN
-            });
-            const response = await octokit.request('POST /repos/yvonnekw/otc_backend/actions/workflows/backend-ci.yml/dispatches', {
-              ref: 'main'
-            });
-            console.log(response.status);
+      #- name: Trigger backend CI
+       # uses: actions/github-script@v5
+        #with:
+         # github-token: ${{ secrets.MY_TOKEN }}
+          #script: |
+           # const { Octokit } = require("@octokit/rest");
+            #const octokit = new Octokit({
+             # auth: process.env.GITHUB_TOKEN
+            #});
+            #const response = await octokit.request('POST /repos/yvonnekw/otc_backend/actions/workflows/backend-ci.yml/dispatches', {
+             # ref: 'main'
+            #});
+            #console.log(response.status);
 
       # Wait for backend CI to finish
       - name: Wait for backend CI to finish
