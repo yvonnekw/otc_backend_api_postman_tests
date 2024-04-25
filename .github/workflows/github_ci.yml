@@ -22,7 +22,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Build Spring Boot application
-        run: mvn -B package --file otc_backend/pom.xml
+        run: |
+           mvn -B package 
+           --file https://github.com/yvonnekw/otc_backend/raw/main/pom.xml
 
       - name: Start backend application
         run: |
