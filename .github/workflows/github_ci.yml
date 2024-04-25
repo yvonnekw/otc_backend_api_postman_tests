@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         #uses: actions/checkout@v3
         uses: actions/checkout@master
-      - uses: matt-ball/newman-action@manster
+      - uses: matt-ball/newman-action
         with: 
           collection: https://github.com/yvonnekw/otc_backend_api_postman_tests/tree/main/collections/otc.postman_collection.json
           environment: https://github.com/yvonnekw/otc_backend_api_postman_tests/tree/main/collections/otc.postman_environment.json
