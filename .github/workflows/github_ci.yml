@@ -29,10 +29,10 @@ jobs:
           cd otc_backend
           mvn -B package
 
-      #- name: Download backend JAR
-       #run: |
-          #cd otc_backend
-          #curl -LO https://github.com/yvonnekw/otc_backend/releases/latest/download/otc-springboot-backend-image.jar
+      - name: Download backend JAR
+        run: |
+          cd otc_backend
+          curl -LO https://github.com/yvonnekw/otc_backend/releases/latest/download/otc-springboot-backend-image.jar
 
       - name: Start backend application
         run: java -jar otc_backend/target/otc-springboot-backend-image.jar &
