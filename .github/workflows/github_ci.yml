@@ -12,6 +12,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Trigger backend CI workflow
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.MY_TOKEN }}
+          script: |
+            const { Octokit } = require("@octokit/rest");
+            const octokit = new Octokit({
+            auth: process.env.GITHUB_TOKEN
+            });
+            const response = await octokit.request('POST /repos/yvonnekw/otc_backend/actions/workflows/backend-ci.yml/dispatches', {
+              ref: 'main'
+            });
+            console.log(response.status);
       - name: Checkout repository
         uses: actions/checkout@v4
 
