@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          path: otc_backend
 
       - name: Set up JDK
         uses: actions/setup-java@v3
@@ -21,14 +23,16 @@ jobs:
           distribution: 'temurin'
 
       - name: Build Spring Boot application
+        id: packaging-jar
+        shell: bash
         run: |
           cd otc_backend
           mvn -B package
 
-      - name: Download backend JAR
-        run: |
-          cd otc_backend
-          curl -LO https://github.com/yvonnekw/otc_backend/releases/latest/download/otc-springboot-backend-image.jar
+      #- name: Download backend JAR
+       #run: |
+          #cd otc_backend
+          #curl -LO https://github.com/yvonnekw/otc_backend/releases/latest/download/otc-springboot-backend-image.jar
 
       - name: Start backend application
         run: java -jar otc_backend/target/otc-springboot-backend-image.jar &
