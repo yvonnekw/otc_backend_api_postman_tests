@@ -1,79 +1,37 @@
-name: otc postman ci
+name: otc postman CI
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install dependencies
-        run: npm install @octokit/rest
-
-      - name: Install Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '21'
-
-      - name: Trigger backend CI workflow
-        uses: actions/github-script@v5
-        with:
-          github-token: ${{ secrets.MY_TOKEN }}
-          script: |
-            const { Octokit } = require("@octokit/rest");
-            const octokit = new Octokit({
-            auth: process.env.GITHUB_TOKEN
-            });
-            const response = await octokit.request('POST /repos/yvonnekw/otc_backend/actions/workflows/backend-ci.yml/dispatches', {
-              ref: 'main'
-            });
-            console.log(response.status);
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Run Postman collection
-        uses: matt-ball/newman-action@v2.0.0
-        with: 
-          collection: https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_collection.json
-          environment: https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_environment.json
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
 
-      #- name: Create directory for tests
-        #run: mkdir otc-api-tests
+      - name: Build Spring Boot application
+        run: mvn -B package --file pom.xml
 
-      #- name: Install Node.js
-        #uses: actions/setup-node@v2
-        #with:
-          #node-version: '21'
+      - name: Start backend application
+        run: |
+          java -jar ./target/otc-springboot-backend-image.jar &
 
-      #- name: Install Newman and reporter
-        #run: |
-          #npm install -g newman@latest newman-reporter-htmlextra
+      - name: Wait for backend application to be ready
+        run: |
+          while ! nc -z localhost 8080; do sleep 1; done
 
-      # Trigger backend CI workflow
-      #- name: Trigger backend CI
-       # uses: actions/github-script@v5
-        #with:
-         # github-token: ${{ secrets.MY_TOKEN }}
-          #script: |
-           # const { Octokit } = require("@octokit/rest");
-            #const octokit = new Octokit({
-             # auth: process.env.GITHUB_TOKEN
-            #});
-            #const response = await octokit.request('POST /repos/yvonnekw/otc_backend/actions/workflows/backend-ci.yml/dispatches', {
-             # ref: 'main'
-            #});
-            #console.log(response.status);
+      - name: Install Newman
+        run: npm install -g newman
 
-      # Wait for backend CI to finish
-      #- name: Wait for backend CI to finish
-       #run: sleep 30
-
-      # Run Postman collection against the backend
-      #- name: Run Postman collection
-        #run: |
-          #newman run https://github.com/yvonnekw/otc_backend_api_postman_tests/tree/main/collections/otc.postman_collection.json -r htmlextra
+      - name: Run Postman tests
+        run: newman run https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_collection.json -e /https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_environment.json --delay-request 1000
