@@ -1,0 +1,52 @@
+name: otc postman ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create directory for tests
+        run: mkdir otc-api-tests
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '21'
+
+      - name: Install Newman and reporter
+        run: |
+          npm install -g newman newman-reporter-htmlextra
+
+      # Trigger backend CI workflow
+      #- name: Trigger backend CI
+       # uses: actions/github-script@v5
+        #with:
+         # github-token: ${{ secrets.MY_TOKEN }}
+          #script: |
+           # const { Octokit } = require("@octokit/rest");
+            #const octokit = new Octokit({
+             # auth: process.env.GITHUB_TOKEN
+            #});
+            #const response = await octokit.request('POST /repos/yvonnekw/otc_backend/actions/workflows/backend-ci.yml/dispatches', {
+             # ref: 'main'
+            #});
+            #console.log(response.status);
+
+      # Wait for backend CI to finish
+      - name: Wait for backend CI to finish
+        run: sleep 30
+
+      # Run Postman collection against the backend
+      - name: Run Postman collection
+        run: |
+          newman run https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_collection.json -r htmlextra
