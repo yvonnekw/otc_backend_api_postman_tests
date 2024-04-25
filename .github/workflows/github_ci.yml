@@ -1,6 +1,5 @@
 name: otc postman CI
 
-
 on:
   push:
     branches: [main]
@@ -13,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up JDK
         uses: actions/setup-java@v3
@@ -23,17 +22,20 @@ jobs:
 
       - name: Build Spring Boot application
         run: |
-           mvn -B package 
-           --file https://github.com/yvonnekw/otc_backend/raw/main/pom.xml
+          cd otc_backend
+          mvn -B package
+
+      - name: Download backend JAR
+        run: |
+          cd otc_backend
+          curl -LO https://github.com/yvonnekw/otc_backend/releases/latest/download/otc-springboot-backend-image.jar
 
       - name: Start backend application
-        run: |
-          wget https://github.com/yvonnekw/otc_backend/raw/main/target/otc-springboot-backend-image.jar
-          java -jar otc-springboot-backend-image.jar &
+        run: java -jar otc_backend/target/otc-springboot-backend-image.jar &
 
       - name: Wait for backend application to be ready
         run: |
-          while ! nc -z localhost 8080; do sleep 1; done
+          while ! nc -z localhost 8000; do sleep 1; done
 
       - name: Install Newman
         run: npm install -g newman
