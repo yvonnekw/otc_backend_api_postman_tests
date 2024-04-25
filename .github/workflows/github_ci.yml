@@ -18,6 +18,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '21'
+          distribution: 'temurin'
 
       - name: Build Spring Boot application
         run: mvn -B package --file pom.xml
