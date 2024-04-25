@@ -13,12 +13,13 @@ jobs:
 
     steps:
       - name: Checkout repository
-        #uses: actions/checkout@v3
-        uses: actions/checkout@master
-      - uses: matt-ball/newman-action
+        uses: actions/checkout@v3
+
+      - name: Run Postman collection
+        uses: matt-ball/newman-action@v2.0.0
         with: 
-          collection: https://github.com/yvonnekw/otc_backend_api_postman_tests/tree/main/collections/otc.postman_collection.json
-          environment: https://github.com/yvonnekw/otc_backend_api_postman_tests/tree/main/collections/otc.postman_environment.json
+          collection: https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_collection.json
+          environment: https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_environment.json
 
       #- name: Create directory for tests
         #run: mkdir otc-api-tests
