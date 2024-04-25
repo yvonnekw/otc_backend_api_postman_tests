@@ -49,4 +49,4 @@ jobs:
       # Run Postman collection against the backend
       - name: Run Postman collection
         run: |
-          newman run https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_collection.json -r htmlextra
+          newman run https://github.com/yvonnekw/otc_backend_api_postman_tests/tree/main/collections/otc.postman_collection.json -r htmlextra
