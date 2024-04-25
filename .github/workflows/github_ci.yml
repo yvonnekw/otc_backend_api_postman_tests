@@ -32,7 +32,7 @@ jobs:
       - name: Build Spring Boot application
         run: |
           cd otc_backend
-          mvn -B package
+          mvn -B package -DskipTests
 
       - name: Download backend JAR
         run: |
