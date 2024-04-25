@@ -22,9 +22,14 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
+      - name: Fetch pom.xml from another repository
+        uses: actions/checkout@v4
+        with:
+          repository: yvonnekw/otc_backend
+          path: otc_backend
+          ref: main
+
       - name: Build Spring Boot application
-        id: packaging-jar
-        shell: bash
         run: |
           cd otc_backend
           mvn -B package
