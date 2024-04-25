@@ -25,7 +25,7 @@ jobs:
 
       - name: Install Newman and reporter
         run: |
-          npm install -g newman@latest newman-reporter-htmlextra@2.1.2
+          npm install -g newman@latest newman-reporter-htmlextra
 
       # Trigger backend CI workflow
       #- name: Trigger backend CI
