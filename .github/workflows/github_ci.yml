@@ -42,9 +42,9 @@ jobs:
       - name: Start backend application
         run: java -jar otc_backend/target/otc-springboot-backend-image.jar &
 
-      - name: Wait for backend application to be ready
-        run: |
-          while ! nc -z localhost 8000; do sleep 1; done
+      #- name: Wait for backend application to be ready
+       # run: |
+          #while ! nc -z localhost 8000; do sleep 1; done
 
       - name: Install Newman
         run: npm install -g newman
