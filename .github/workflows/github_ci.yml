@@ -45,6 +45,9 @@ jobs:
       #- name: Wait for backend application to be ready
        # run: |
           #while ! nc -z localhost 8000; do sleep 1; done
+      - name: Wait for backend application to be ready
+        run: |
+          while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8000/health)" != "200" ]]; do sleep 5; done
 
       - name: Install Newman
         run: npm install -g newman
