@@ -38,6 +38,11 @@ jobs:
        # run: |
           #while ! nc -z localhost 8000; do sleep 1; done
 
+      - name: Verify port 8000 of the app is running
+        run: |
+          sleep 10 
+          nc -zv localhost 8000
+
       #- name: Build Spring Boot application
         #run: |
           #cd otc_backend
