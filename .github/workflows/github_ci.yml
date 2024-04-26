@@ -29,7 +29,7 @@ jobs:
           owner: yvonnekw
           repo: otc_backend
          #path: otc_backend
-          #github_token: ${{ secrets.MY_TOKEN }}
+          github_token: ${{ secrets.G_PERSONAL_TOKEN }}
           workflow_file_name: backend-ci.yml
           ref: postman_test_branch
 
