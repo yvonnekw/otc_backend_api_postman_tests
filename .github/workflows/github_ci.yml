@@ -22,32 +22,36 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Fetch pom.xml from another repository
-        uses: actions/checkout@v4
+      - name: build backend
+        #uses: actions/checkout@v4
+        uses: convictional/trigger-workflow-and-wait@v1.6.5
         with:
-          repository: yvonnekw/otc_backend
-          path: otc_backend
+          owner: yvonnekw
+          repo: yvonnekw/otc_backend
+          #path: otc_backend
+          github_token: ${{secrets.MY_TOKEN}}
+          workflow_file_name: backend-ci.yml
           ref: postman_test_branch
 
-      - name: Build Spring Boot application
-        run: |
-          cd otc_backend
-          mvn -B package -DskipTests
+      #- name: Build Spring Boot application
+        #run: |
+          #cd otc_backend
+          #mvn -B package -DskipTests
 
-      - name: Download backend JAR
-        run: |
-          cd otc_backend
-          curl -LO https://github.com/yvonnekw/otc_backend/releases/latest/download/otc-springboot-backend-image.jar
+      #- name: Download backend JAR
+        #run: |
+          #cd otc_backend
+         # curl -LO https://github.com/yvonnekw/otc_backend/releases/latest/download/otc-springboot-backend-image.jar
 
-      - name: Start backend application
-        run: java -jar otc_backend/target/otc-springboot-backend-image.jar &
+      #- name: Start backend application
+        #run: java -jar otc_backend/target/otc-springboot-backend-image.jar &
 
       #- name: Wait for backend application to be ready
        # run: |
           #while ! nc -z localhost 8000; do sleep 1; done
       - name: Wait for backend application to be ready
         run: |
-          while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8000/actuator/health)" != "UP" ]]; do sleep 5; done
+          while [[ "$(curl -s -o /dev/null -w '%{http_code}' localhost:8000/actuator/health)" != "200" ]]; do sleep 5; done
 
       - name: Install Newman
         run: npm install -g newman
