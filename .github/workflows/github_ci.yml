@@ -1,6 +1,7 @@
 name: otc postman CI
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
   pull_request:
@@ -32,6 +33,10 @@ jobs:
           github_token: ${{ secrets.G_PERSONAL_TOKEN }}
           workflow_file_name: backend-ci.yml
           ref: postman_test_branch
+
+      - name: Wait for backend to be ready
+        run: |
+          while ! nc -z localhost 8000; do sleep 1; done
 
       #- name: Build Spring Boot application
         #run: |
