@@ -38,10 +38,18 @@ jobs:
        # run: |
           #while ! nc -z localhost 8000; do sleep 1; done
 
-      - name: Verify port 8000 of the app is running
+      - name: Wait for backend to be ready
         run: |
-          sleep 10 
-          nc -zv localhost 8000
+          retries=0
+          max_retries=30  # Adjust the maximum number of retries as needed
+          while ! nc -z localhost 8000; do
+            retries=$((retries+1))
+            if [ $retries -eq $max_retries ]; then
+              echo "Maximum number of retries reached. Exiting."
+              exit 1
+            fi
+            sleep 1
+          done
 
       #- name: Build Spring Boot application
         #run: |
