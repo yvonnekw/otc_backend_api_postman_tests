@@ -11,23 +11,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          path: otc_backend
+      #- name: Checkout repository
+        #uses: actions/checkout@v4
+        #with:
+         # path: otc_backend
 
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: '21'
-          distribution: 'temurin'
+     # - name: Set up JDK
+        #uses: actions/setup-java@v3
+        #with:
+          #java-version: '21'
+          #distribution: 'temurin'
 
       - name: build backend
         #uses: actions/checkout@v4
         uses: convictional/trigger-workflow-and-wait@v1.6.5
         with:
           owner: yvonnekw
-          repo: yvonnekw/otc_backend
+          repo: otc_backend
           #path: otc_backend
           github_token: ${{secrets.MY_TOKEN}}
           workflow_file_name: backend-ci.yml
@@ -49,9 +49,9 @@ jobs:
       #- name: Wait for backend application to be ready
        # run: |
           #while ! nc -z localhost 8000; do sleep 1; done
-      - name: Wait for backend application to be ready
-        run: |
-          while [[ "$(curl -s -o /dev/null -w '%{http_code}' localhost:8000/actuator/health)" != "200" ]]; do sleep 5; done
+      #- name: Wait for backend application to be ready
+        #run: |
+         # while [[ "$(curl -s -o /dev/null -w '%{http_code}' localhost:8000/actuator/health)" != "200" ]]; do sleep 5; done
 
       - name: Install Newman
         run: npm install -g newman
