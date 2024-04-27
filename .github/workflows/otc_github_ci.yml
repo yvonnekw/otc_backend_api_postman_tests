@@ -71,6 +71,12 @@ jobs:
         #run: |
          # while [[ "$(curl -s -o /dev/null -w '%{http_code}' localhost:8000/actuator/health)" != "200" ]]; do sleep 5; done
 
+      
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '21'
+
       - name: Install Newman
         run: npm install -g newman
 
