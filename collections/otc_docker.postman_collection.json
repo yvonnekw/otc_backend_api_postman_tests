@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "7ecfa1cf-45dc-40d2-9918-6c516513f5cd",
-		"name": "otc docker",
+		"name": "otc_docker",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "4261526",
 		"_collection_link": "https://blue-space-4522.postman.co/workspace/myworkspace~a3396432-9948-4bce-9c09-ea884a5defc7/collection/4261526-7ecfa1cf-45dc-40d2-9918-6c516513f5cd?action=share&source=collection_link&creator=4261526"
@@ -35,10 +35,13 @@
 							"raw": "{\n    \"amount\":\"60\",\n    \"paymentDate\":\"01/02/2024\",\n    \"fullNameOnPaymentCard\": \"Myfull Name\",\n    \"cardNumber\":\"4545676798341110\",\n   \"expiringDate\":\"12/09/2025\",\n   \"issueNumber\": \"123\",\n    \"securityNumber\": \"234\"\n}"
 						},
 						"url": {
-							"raw": "http://app:8000/payments",
+							"raw": "http://127.0.0.1:8000/payments",
 							"protocol": "http",
 							"host": [
-								"app"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
 							"port": "8000",
 							"path": [
@@ -367,10 +370,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://app:8000/call-receiver/add-receiver",
+							"raw": "http://127.0.0.1:8000/call-receiver/add-receiver",
 							"protocol": "http",
 							"host": [
-								"app"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
 							"port": "8000",
 							"path": [
@@ -522,10 +528,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://app:8000/calls/make-call",
+							"raw": "http://127.0.0.1:8000/calls/make-call",
 							"protocol": "http",
 							"host": [
-								"app"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
 							"port": "8000",
 							"path": [
@@ -1207,10 +1216,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/user/yodalpinky1",
+							"raw": "http://host.docker.internal:8000/user/yodalpinky1",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"host",
+								"docker",
+								"internal"
 							],
 							"port": "8000",
 							"path": [
