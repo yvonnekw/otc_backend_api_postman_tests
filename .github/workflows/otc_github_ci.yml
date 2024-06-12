@@ -8,7 +8,7 @@ on:
     branches: [main]
 
 jobs:
-   deploy-and-test:
+  deploy-and-test:
     runs-on: ubuntu-latest
 
     services:
@@ -16,7 +16,7 @@ jobs:
         image: gcr.io/k8s-minikube/kicbase:v0.0.30
         ports:
           - 8000:8000
-          - 2000:2000
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -33,10 +33,10 @@ jobs:
     - name: Pull Docker images
       run: |
         docker pull yvonnetest/otc-docker-backend-image:latest
+
     - name: Load Docker images into Minikube
       run: |
         minikube image load yvonnetest/otc-docker-backend-image:latest
-        minikube image load yvonnetest/otc-vite-react-frontend-image:latest
 
     - name: Apply PostgreSQL secrets
       run: kubectl apply -f ./k8s/postgres-secret.yaml
@@ -62,84 +62,27 @@ jobs:
         kubectl apply -f ./k8s/otc-backend-deployment.yaml --validate=false
         kubectl apply -f ./k8s/otc-backend-service.yaml --validate=false
         kubectl apply -f ./k8s/combined-ingress.yaml --validate=false
-    
+
     - name: Wait for Spring Boot backend to be ready
       run: kubectl rollout status deployment/otc-backend
 
-      #- name: Checkout repository
-        #uses: actions/checkout@v4
-        #with:
-         # path: otc_backend
-
-     # - name: Set up JDK
-        #uses: actions/setup-java@v3
-        #with:
-          #java-version: '21'
-          #distribution: 'temurin'
-
-      #- name: build backend
-        #uses: actions/checkout@v4
-       # uses: convictional/trigger-workflow-and-wait@v1.6.5
-        #with:
-          #owner: yvonnekw
-          #repo: otc_backend
-         #path: otc_backend
-         # github_token: ${{ secrets.G_PERSONAL_TOKEN }}
-         # workflow_file_name: backend-ci.yml
-          #ref: postman_test_branch
-
-      #- name: Wait for backend to be ready
-       # run: |
-          #while ! nc -z localhost 8000; do sleep 1; done
-
-      #- name: Wait for backend to be ready
-        #run: |
-          #retries=0
-          #max_retries=30  # Adjust the maximum number of retries as needed
-          #while ! nc -z localhost 8000; do
-            #retries=$((retries+1))
-            #if [ $retries -eq $max_retries ]; then
-              #echo "Maximum number of retries reached. Exiting."
-              #exit 1
-            #fi
-            #sleep 1
-          #done
-
-      #- name: Build Spring Boot application
-        #run: |
-          #cd otc_backend
-          #mvn -B package -DskipTests
-
-      #- name: Download backend JAR
-        #run: |
-          #cd otc_backend
-         # curl -LO https://github.com/yvonnekw/otc_backend/releases/latest/download/otc-springboot-backend-image.jar
-
-      #- name: Start backend application
-        #run: java -jar otc_backend/target/otc-springboot-backend-image.jar &
-
-      #- name: Wait for backend application to be ready
-       # run: |
-          #while ! nc -z localhost 8000; do sleep 1; done
-      #- name: Wait for backend application to be ready
-        #run: |
-         # while [[ "$(curl -s -o /dev/null -w '%{http_code}' localhost:8000/actuator/health)" != "200" ]]; do sleep 5; done
-
-      
     - name: Install Node.js
       uses: actions/setup-node@v2
       with:
         node-version: '21'
 
-    - name: Forward backend port
-      run: kubectl port-forward service/otc-backend-service 8000:8000 &
-
-    - name: Forward frontend port
-      run: kubectl port-forward service/otc-frontend-service 2000:2000 &
-
     - name: Install Newman
       run: npm install -g newman
 
+    - name: Forward backend port
+      run: kubectl port-forward service/otc-backend-service 8000:8000 &
+
     - name: Run Postman tests
       run: newman run https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/fix_github_actions/collections/otc_docker.postman_collection.json -e https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_environment.json --delay-request 1000
-              #newman run https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_collection.json -r htmlextra
+
+    - name: Save test results
+      if: failure()
+      uses: actions/upload-artifact@v2
+      with:
+        name: postman-test-results
+        path: newman/
