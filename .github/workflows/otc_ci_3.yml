@@ -65,7 +65,7 @@ jobs:
         kubectl apply -f ./k8s/rabbitmq-deployment.yaml
         kubectl apply -f ./k8s/rabbitmq-service.yaml
         kubectl apply -f ./k8s/otc-backend-deployment.yaml --validate=false
-        kubectl expose deployment otc-backend --type=NodePort --port=8000 --name=otc-backend-service --validate=false
+        kubectl expose deployment otc-backend --type=NodePort --port=8000 --name=otc-backend-service
         kubectl apply -f ./k8s/combined-ingress.yaml --validate=false
     
     - name: Wait for Spring Boot backend to be ready
