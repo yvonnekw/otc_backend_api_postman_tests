@@ -14,6 +14,9 @@ jobs:
     services:
       minikube:
         image: gcr.io/k8s-minikube/kicbase:v0.0.30
+        options: >-
+          --memory=2g
+          --cpus=2
         ports:
           - 8000:8000
 
@@ -33,10 +36,12 @@ jobs:
     - name: Pull Docker images
       run: |
         docker pull yvonnetest/otc-docker-backend-image:latest
+        docker pull yvonnetest/otc-vite-react-frontend-image:latest
 
     - name: Load Docker images into Minikube
       run: |
         minikube image load yvonnetest/otc-docker-backend-image:latest
+        minikube image load yvonnetest/otc-vite-react-frontend-image:latest
 
     - name: Apply PostgreSQL secrets
       run: kubectl apply -f ./k8s/postgres-secret.yaml
@@ -62,7 +67,7 @@ jobs:
         kubectl apply -f ./k8s/otc-backend-deployment.yaml --validate=false
         kubectl apply -f ./k8s/otc-backend-service.yaml --validate=false
         kubectl apply -f ./k8s/combined-ingress.yaml --validate=false
-
+    
     - name: Wait for Spring Boot backend to be ready
       run: kubectl rollout status deployment/otc-backend
 
@@ -78,7 +83,7 @@ jobs:
       run: kubectl port-forward service/otc-backend-service 8000:8000 &
 
     - name: Run Postman tests
-      run: newman run https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/fix_github_actions/collections/otc_docker.postman_collection.json -e https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_environment.json --delay-request 1000
+      run: newman run https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/fix_github_actions/collections/otc-for-ci.postman_collection.json -e https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_environment.json --global-var "baseUrl=http://127.0.0.1:8000" --delay-request 1000
 
     - name: Save test results
       if: failure()

@@ -1,0 +1,1344 @@
+{
+	"info": {
+		"_postman_id": "b5d9cb87-1b8d-4635-b130-caf44d877142",
+		"name": "otc-for-ci",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "4261526",
+		"_collection_link": "https://blue-space-4522.postman.co/workspace/myworkspace~a3396432-9948-4bce-9c09-ea884a5defc7/collection/4261526-b5d9cb87-1b8d-4635-b130-caf44d877142?action=share&source=collection_link&creator=4261526"
+	},
+	"item": [
+		{
+			"name": "payment",
+			"item": [
+				{
+					"name": "create call payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.get(\"invoiceId\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-length": true,
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"paymentDate\":\"01/02/2024\",\n    \"fullNameOnPaymentCard\": \"Myfull Name\",\n    \"cardNumber\":\"4545676798341110\",\n   \"expiringDate\":\"12/09/2025\",\n   \"issueNumber\": \"123\",\n    \"securityNumber\": \"234\",\n     \"invoiceId\": 3,\n     \"status\":\"Paid\"\n}"
+						},
+						"url": "http://127.0.0.1:8000/payments/payment"
+					},
+					"response": []
+				},
+				{
+					"name": "create call payment Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.get(\"invoiceId\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    //\"paymenrId\":2,\n    \"amount\":\"60\",\n    \"paymentDate\":\"01/02/2024\",\n    \"fullNameOnPaymentCard\": \"Myfull Name\",\n    \"cardNumber\":\"4545676798341110\",\n   \"expiringDate\":\"12/09/2025\",\n   \"issueNumber\": \"123\",\n    \"securityNumber\": \"234\",\n     \"invoice\" :{\n         \"invoiceId\": 1\n     },\n     \"status\":\"Paid\"\n}"
+						},
+						"url": "http://127.0.0.1:8000/payments/payment"
+					},
+					"response": []
+				},
+				{
+					"name": "get all payments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"",
+									"pm.environment.get(\"invoiceId\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/payments/get-all-payments",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"payments",
+								"get-all-payments"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "invoice",
+			"item": [
+				{
+					"name": "create a call invoice",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"content-length": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n //\"invoiceId\":2,\n   // \"invoiceDate\": \"27/02/2024\",\n    //\"totalAmount\":\"100\",\n    \"calls\": [\n        {\n            \"callId\": 1\n        },\n        {\n            \"callId\": 2\n        },\n         \n        {\n            \"callId\": 3\n        },\n        \n        {\n            \"callId\": 4\n        }\n    ],\n    \"status\":\"Invoiced\"\n}"
+						},
+						"url": "http://127.0.0.1:8000/invoices/create-invoice"
+					},
+					"response": []
+				},
+				{
+					"name": "create a call invoice with call ids",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.environment.set(\"invoiceId\", jsonData.invoiceId);     ",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"content-length": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"callIds\": [3, 4]\n   //\"status\": \"Invoiced\"\n}"
+						},
+						"url": "http://127.0.0.1:8000/invoices/create-invoice"
+					},
+					"response": []
+				},
+				{
+					"name": "create a call invoice with call id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.environment.set(\"invoiceId\", jsonData.invoiceId);     ",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"content-length": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"callIds\": [1]\n}"
+						},
+						"url": "http://localhost:8000/invoices/create-invoice"
+					},
+					"response": []
+				},
+				{
+					"name": "get all invoices",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"connection": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "http://localhost:8000/invoices/get-all-invoice"
+					},
+					"response": []
+				},
+				{
+					"name": "get all invoices",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"connection": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "http://localhost:8000/invoices/get-invoice-callIds"
+					},
+					"response": []
+				},
+				{
+					"name": "get Invoices by Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"connection": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "http://localhost:8000/invoices/1"
+					},
+					"response": []
+				},
+				{
+					"name": "get Invoices with param",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"connection": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/invoices/1?userId=yodalpinky1&netCost=0&invoiceId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"invoices",
+								"1"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "yodalpinky1"
+								},
+								{
+									"key": "netCost",
+									"value": "0"
+								},
+								{
+									"key": "invoiceId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"invoiceId\":1,\n    \"invoiceDate\": \"27/02/2024\",\n    \"totalAmount\":\"100\",\n    \"calls\": [\n        {\n         \"callId\": 1\n        }\n       // {\n           // \"callId\": 2\n      //  },\n         \n        //{\n            //\"callId\": 3\n       // },\n        \n        //{\n           // \"callId\": 4\n       // }\n    ]\n   // \"status\":\"Invoiced\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/invoices/create-invoice"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "call receiver",
+			"item": [
+				{
+					"name": "get receivers  phone for a call user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Length",
+								"value": "<calculated when request is sent>",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/call-receiver/phone-numbers?username=yodalpinky1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"call-receiver",
+								"phone-numbers"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "yodalpinky1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get receivers details with username",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Length",
+								"value": "<calculated when request is sent>",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": "http://localhost:8000/call-receiver/phone-numbers/username/yodalpinky1"
+					},
+					"response": []
+				},
+				{
+					"name": "get receivers full name and telephone details with username",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Length",
+								"value": "<calculated when request is sent>",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/call-receiver/call-receivers?username=yodalpinky1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"call-receiver",
+								"call-receivers"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "yodalpinky1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post call receiver",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"callReceiverId\", jsonData.callReceiverId);",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"telephone\", jsonData.telephone);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-length": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"telephone\": \"032456776581\",\n \"username\":  \"yodalpinky1\",\n \"fullName\": \"Donne Hush\",\n \"relationship\": \"friend\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/call-receiver/add-receiver"
+					},
+					"response": []
+				},
+				{
+					"name": "post call receiver Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/callreceiver/phone-numbers/username=yodalpinky1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "call",
+			"item": [
+				{
+					"name": "delete a call that does not exist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8000/api/calls/1"
+					},
+					"response": []
+				},
+				{
+					"name": "update call start and end time",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startTime\": \"16\",\n    \"endTime\": \"20\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/calls/4"
+					},
+					"response": []
+				},
+				{
+					"name": "get Call by Id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"user-agent": true,
+							"content-type": true,
+							"content-length": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8000/calls/1"
+					},
+					"response": []
+				},
+				{
+					"name": "save call",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startTime\": \"10:13:45\",\n    \"endTime\": \"14:20:05\",\n  //  \"duration\": \"20\",\n   // \"costPerMinute\": 0.01,\n    \"discountForCalls\": 10,\n  //  \"signUpDiscount\": 0,\n   // \"vat\": 0.20,\n   // \"netCost\": 20.0,\n  //  \"grossCost\": 20.0,\n  //  \"totalCost\": 50.0,\n   \"username\": \"GownPlayer759896501\",\n    \"telephone\": \"032456776581\"\n    //\"callDate\": \"2024/02/12\"\n  \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/calls/make-call"
+					},
+					"response": []
+				},
+				{
+					"name": "save call Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n  \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/invoices/create-invoice"
+					},
+					"response": []
+				},
+				{
+					"name": "trigger call end",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"yodalpinky1\",\n    \"completedCalls\": [\n        {\n            \"currentCallId\": \"1\",\n            \"startTime\": \"2024-03-14T08:30:00\",\n            \"endTime\": \"2024-03-14T08:45:00\"\n        },\n        {\n            \"currentCallId\": \"2\",\n            \"startTime\": \"2024-03-14T09:00:00\",\n            \"endTime\": \"2024-03-14T09:15:00\"\n        },\n        {\n            \"currentCallId\": \"3\",\n            \"startTime\": \"2024-03-14T09:30:00\",\n            \"endTime\": \"2024-03-14T09:45:00\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/calls/completed"
+					},
+					"response": []
+				},
+				{
+					"name": "get all calls",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/calls?username=yodalpinky1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"calls"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "yodalpinky1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all calls for user that are paid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/calls/user/yodalpinky1/calls?status=Paid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"calls",
+								"user",
+								"yodalpinky1",
+								"calls"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "Paid"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all calls for user that are Pending Invoice",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/calls/user/yodalpinky1/calls?status=Pending Invoice",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"calls",
+								"user",
+								"yodalpinky1",
+								"calls"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "Pending Invoice"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all calls for user that are Invoice",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/calls/user/yodalpinky1/calls?status=Invoiced",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"calls",
+								"user",
+								"yodalpinky1",
+								"calls"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "Invoiced"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all calls Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/calls/user?username=yodalpinky1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"calls",
+								"user"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "yodalpinky1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a call that exists",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8000/api/calls/2"
+					},
+					"response": []
+				},
+				{
+					"name": "get calls for user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/callreceiver/tele?username=yodalpinky1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"callreceiver",
+								"tele"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "yodalpinky1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get paid calls for user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/calls/paid?username=yodalpinky1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"calls",
+								"paid"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "yodalpinky1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get unpaid calls for user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/calls/unpaid?username=yodalpinky1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"calls",
+								"unpaid"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "yodalpinky1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all paid calls",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8000/calls/paid"
+					},
+					"response": []
+				},
+				{
+					"name": "get all paid calls for user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/calls/paid?username=yodalpinky1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"calls",
+								"paid"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "yodalpinky1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all unpaid calls",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/calls/unpaid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"calls",
+								"unpaid"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "yodalpinky1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all calls",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8000/calls/get-all-calls"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "getAllUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8000/user/all-users"
+					},
+					"response": []
+				},
+				{
+					"name": "post user Copy",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-length": true,
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n //\"userId\": \"1\",\n \"firstName\": \"Myfirstname\",\n \"lastName\": \"lastname\",\n \"emailAddress\": \"my email@mail.com\",\n \"telephoneNumber\": \"09874653234\",\n  \"password\": \"pwd3\",\n  \"authorities\": []\n}"
+						},
+						"url": "http://localhost:8000/user/register"
+					},
+					"response": []
+				},
+				{
+					"name": "get check number exists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/callreceiver/phone-exists?username=yodalpinky1&telephone=032456776580",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"callreceiver",
+								"phone-exists"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "yodalpinky1"
+								},
+								{
+									"key": "telephone",
+									"value": "032456776580"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiYWRtaW5TbWl0aCIsImlhdCI6MTcwOTkyMzM1MCwic2NvcGUiOiJBRE1JTiJ9.IDdv98opX06ENEE33e-94ZRi_KXiHu9_mVg8MW9NcGqeLVX33q405nkFSNt50vM9Fey7SrLXbvgJKSq0AJg8LekDg1Wk6TBzAcdsOCM08Mz8cUQlP5TW31QduDM8tQw86mJqJVmYIAsJuFjoj6foox7bsB5OmGwkmg6cVceCw1Kws9byIZP0V9teafptrlO7KU83am8W5t5PGs9QZpENIij1MBfjrtTjtoSLN9bFjX7kI3QtI6OuGAKgBW-91E1-SXUuWu2CkyfItknOnu3cUcqnIbpNTwqECLc9vTfR-GEjZsUm1wqozDNyuD9AawuyOL_rl1maAPG5M717LJOEqQ"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/user"
+					},
+					"response": []
+				},
+				{
+					"name": "post user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n//\"userId\": 2,\n \"firstName\": \"Gown\",\n\"lastName\": \"Player\",\n \"emailAddress\": \"ayer@mail.com\",\n //\"username\": \"Gergna4Brown4400361967\",\n \"password\": \"pwd\",\n \"telephone\": \"0789876543\",\n \"authorities\": [\"USER\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/auth/register"
+					},
+					"response": []
+				},
+				{
+					"name": "auth/login -admin",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"username\": \"adminSmith\",\n \"password\": \"password1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "auth/login Copy",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"username\": \"GownPlayer320752651\",\n \"password\": \"pwd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "auth/username",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoieW9kYWxwaW5reTEiLCJpYXQiOjE3MTE2NzIyNTIsInNjb3BlIjoiVVNFUiJ9.OSts66fFIcCpPgbOPbBZyoLVYvXoTSqluu7Th63Ic5OKlpsFWiPeiHAgtx1lnA_o_uuHZyLfi-8c02_izfAY9H2TMrotVFLBlkRWm_DVqWVcYGmN3X4-3FsSnexNtpzZBIHLJ6e4rt017clNI4ZPTc_H0oSKAbOxTcTgsCfdhZRd2vND8JRnEUaKCpCHbDCdjxjGAbGlcnuTAU-dhrM2i_pSJvlqkukyUtpFUSfebOZ7rjYpiV234nEgOZku1HcXx7RxcDFIFIZs8X4DqebvKG1LNAAuogPgYK4R0XwaJpxOtwym1f61ka-YgK12Nxob2d7J6DIuHyJZvZ8196Pklg"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/auth/username",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"auth",
+								"username"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "yodalpinky1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "auth/login negative",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"username\": \"Gergna\",\n \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "auth/verify",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoieW9kYWxwaW5reTEiLCJpYXQiOjE3MDY2Mjg3MzYsInNjb3BlIjoiVVNFUiJ9.QEc2pynVJpOMH0cgwOu2M99YjlezINdH6p75phDLVTB5eqDvhfWMF4caZQoIN-WES5WWwbgOhARMncFIgcfLdaQ7cBOyQhg9rNWgJTPBeU0FIj2QE3qo-WYbyB6Q30_n1jyCYKR1wb834PVJ62wGz5U6S0i5yxIGwyvyd4xKdrfnu2PCGUncN-zvFIfdlmyXcUEm-mhAWOeN5dyzgFCMdGXAAGSQ_tV4xhp1Z_Vc3hb1BPBHqPVOUAGTw7Ynldzk9tWWMqTIYuN4H0SzIwJ4V0Djb6TWwDaqUd27JSMH7UuQ4Tt8FeLYdm-lSiy2GW0SNxGkSMEIWR7B3dSNkmyHtA"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/user/verify"
+					},
+					"response": []
+				},
+				{
+					"name": "get one user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/users/user/1"
+					},
+					"response": []
+				},
+				{
+					"name": "get all users Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/auth"
+					},
+					"response": []
+				},
+				{
+					"name": "get one user Copy",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/user/yodalpinky1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "New Folder",
+			"item": []
+		},
+		{
+			"name": "post message json",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n//\"userId\": 2,\n \"firstName\": \"Gergna7\",\n\"lastName\": \"Brown7\",\n \"emailAddress\": \"mki@mail.com\",\n //\"username\": \"Gergna4Brown4400361967\",\n \"password\": \"pwd\",\n \"mainTelephone\": \"07892883117\",\n \"authorities\": []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/user/mess-publisher"
+			},
+			"response": []
+		}
+	]
+}
