@@ -88,8 +88,12 @@ jobs:
           curl -f http://127.0.0.1:30080/actuator/health && break || sleep 10
         done
 
-    - name: Run Postman tests
-      run: newman run https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/fix_github_actions/collections/otc_docker.postman_collection.json -e https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_environmentN.json --global-var "baseUrl=http://127.0.0.1:30080" --delay-request 1000
+    - name: Run Newman Tests
+      run: |
+        newman run https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/fix_github_actions/collections/otc-for-ci.postman_collection.json \
+          -e https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_environmentN.json \
+          --global-var "baseUrl=http://127.0.0.1:30080" \
+          --delay-request 1000
 
     - name: Save test results
       if: failure()
