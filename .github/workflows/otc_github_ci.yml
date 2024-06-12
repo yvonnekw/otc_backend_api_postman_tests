@@ -14,9 +14,9 @@ jobs:
     services:
       minikube:
         image: gcr.io/k8s-minikube/kicbase:v0.0.30
-        options: >-
-          --memory=2g
-          --cpus=2
+        #options: >-
+          #--memory=2g
+          #--cpus=2
         ports:
           - 8000:8000
 
