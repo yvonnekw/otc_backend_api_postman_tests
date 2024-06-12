@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otc-frontend
+  labels:
+    app: otc-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: otc-frontend
+  template:
+    metadata:
+      labels:
+        app: otc-frontend
+    spec:
+      containers:
+        - name: otc-frontend
+          image: yvonnetest/otc-vite-react-frontend-image:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 2000
+          env:
+            - name: REACT_APP_BACKEND_URL
+              value: "http://backend-service:8000"
+      restartPolicy: Always
