@@ -91,7 +91,7 @@ jobs:
     - name: Run Newman Tests
       run: |
         newman run https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/fix_github_actions/collections/otc-for-ci.postman_collection.json \
-          -e https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_environmentN.json \
+         -e https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_environment.json \
           --global-var "baseUrl=http://127.0.0.1:30080" \
           --delay-request 1000
 
