@@ -80,10 +80,10 @@
 							"raw": "{\n //\"invoiceId\":1,\n    //\"invoiceDate\": \"27/02/2024\",\n    //\"totalAmount\":\"100\",\n    \"calls\": [\n        {\n            \"callId\": 1\n        },\n        {\n            \"callId\": 2\n        },\n         \n        {\n            \"callId\": 3\n        },\n        \n        {\n            \"callId\": 4\n        }\n    ],\n    \"status\":\"Invoiced\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8000/invoices/create-invoice",
+							"raw": "http://127.0.0.1:8000/invoices/create-invoice",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -120,10 +120,10 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8000/invoices/get-all-invoice",
+							"raw": "http://127.0.0.1:8000/invoices/get-all-invoice",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -160,10 +160,10 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8000/invoices/all",
+							"raw": "http://127.0.0.1:8000/invoices/all",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -200,10 +200,10 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8000/invoices/3",
+							"raw": "http://127.0.0.1:8000/invoices/3",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -240,10 +240,10 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8000/invoices/1",
+							"raw": "http://127.0.0.1:8000/invoices/1",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -285,10 +285,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/callreceiver/phone-numbers?username=yodalpinky1",
+							"raw": "http://127.0.0.1:8000/callreceiver/phone-numbers?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -323,10 +323,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/call-receiver/call",
+							"raw": "http://127.0.0.1:8000/call-receiver/call",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -405,10 +405,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/callreceiver/add/reciever",
+							"raw": "http://127.0.0.1:8000/callreceiver/add/reciever",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -431,10 +431,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/calls/1",
+							"raw": "http://127.0.0.1:8000/api/calls/1",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -461,10 +461,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/calls/4",
+							"raw": "http://127.0.0.1:8000/api/calls/4",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -498,10 +498,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/api/calls/3",
+							"raw": "http://127.0.0.1:8000/api/calls/3",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -560,10 +560,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/calls/make/call",
+							"raw": "http://127.0.0.1:8000/calls/make/call",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -590,10 +590,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/calls/completed",
+							"raw": "http://127.0.0.1:8000/calls/completed",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -610,10 +610,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/calls/user/yodalpinky1",
+							"raw": "http://127.0.0.1:8000/calls/user/yodalpinky1",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -631,10 +631,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/calls/user?username=yodalpinky1",
+							"raw": "http://127.0.0.1:8000/calls/user?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -657,10 +657,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/calls/2",
+							"raw": "http://127.0.0.1:8000/api/calls/2",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -681,10 +681,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/callreceiver/tele?username=yodalpinky1",
+							"raw": "http://127.0.0.1:8000/callreceiver/tele?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -710,10 +710,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/calls/paid?username=yodalpinky1",
+							"raw": "http://127.0.0.1:8000/calls/paid?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -739,10 +739,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/calls/unpaid?username=yodalpinky1",
+							"raw": "http://127.0.0.1:8000/calls/unpaid?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -774,10 +774,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/calls/paid",
+							"raw": "http://127.0.0.1:8000/calls/paid",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -803,10 +803,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/calls/paid",
+							"raw": "http://127.0.0.1:8000/calls/paid",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -832,10 +832,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/calls/unpaid",
+							"raw": "http://127.0.0.1:8000/calls/unpaid",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -868,10 +868,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/calls/unpaid",
+							"raw": "http://127.0.0.1:8000/calls/unpaid",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -957,10 +957,10 @@
 							"raw": "{\n //\"userId\": \"1\",\n \"firstName\": \"Myfirstname\",\n \"lastName\": \"lastname\",\n \"emailAddress\": \"my email@mail.com\",\n \"telephoneNumber\": \"09874653234\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/register",
+							"raw": "http://127.0.0.1:8000/users/register",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -977,10 +977,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/callreceiver/phone-exists?username=yodalpinky1&telephone=032456776580",
+							"raw": "http://127.0.0.1:8000/callreceiver/phone-exists?username=yodalpinky1&telephone=032456776580",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -1017,10 +1017,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/user",
+							"raw": "http://127.0.0.1:8000/user",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -1083,10 +1083,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/auth/login",
+							"raw": "http://127.0.0.1:8000/auth/login",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -1118,10 +1118,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/auth/login",
+							"raw": "http://127.0.0.1:8000/auth/login",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -1147,10 +1147,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/auth/username",
+							"raw": "http://127.0.0.1:8000/auth/username",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -1176,10 +1176,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/auth/login",
+							"raw": "http://127.0.0.1:8000/auth/login",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -1196,10 +1196,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/user/1",
+							"raw": "http://127.0.0.1:8000/user/1",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -1238,10 +1238,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/user/all-users",
+							"raw": "http://127.0.0.1:8000/user/all-users",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -1258,10 +1258,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/user/users",
+							"raw": "http://127.0.0.1:8000/user/users",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"127.0.0.1"
 							],
 							"port": "8000",
 							"path": [
@@ -1296,10 +1296,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/auth/register",
+					"raw": "http://127.0.0.1:8000/auth/register",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"127.0.0.1"
 					],
 					"port": "8000",
 					"path": [
@@ -1328,10 +1328,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/auth/register",
+					"raw": "http://127.0.0.1:8000/auth/register",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"127.0.0.1"
 					],
 					"port": "8000",
 					"path": [
