@@ -63,14 +63,28 @@ jobs:
       run: | 
         kubectl apply -f ./k8s/postgres-deployment.yaml
         kubectl apply -f ./k8s/postgres-service.yaml
-
-    - name: Set up PostgreSQL
+    
+    - name: Wait for PostgreSQL to be ready
       run: |
-        # Decode secrets to use in commands
-        export POSTGRES_USER=$(echo "${{ secrets.POSTGRES_USER }}" | base64 -d)
-        export POSTGRES_PASSWORD=$(echo "${{ secrets.POSTGRES_PASSWORD }}" | base64 -d)
-        psql -h postgres -U $POSTGRES_USER -c "ALTER USER postgres WITH PASSWORD '${POSTGRES_PASSWORD}';"
+        kubectl rollout status deployment/postgres
 
+    - name: Check PostgreSQL Service
+      run: kubectl get services postgres
+
+    - name: Set PostgreSQL password
+      run: |
+          # Decode secrets to use in commands
+          export POSTGRES_USER=$(echo "${{ secrets.POSTGRES_USER }}" | base64 -d)
+          export POSTGRES_PASSWORD=$(echo "${{ secrets.POSTGRES_PASSWORD }}" | base64 -d)
+
+          # Wait for PostgreSQL to be ready
+          until pg_isready -h postgres -U $POSTGRES_USER; do
+            echo "Waiting for PostgreSQL..."
+            sleep 5
+          done
+
+          PGPASSWORD=$POSTGRES_PASSWORD psql -h postgres -U $POSTGRES_USER -c "ALTER USER postgres WITH PASSWORD '${POSTGRES_PASSWORD}';"
+    
     - name: Apply Kubernetes manifests
       run: |
         kubectl apply -f ./k8s/rabbitmq-deployment.yaml
