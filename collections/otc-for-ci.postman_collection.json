@@ -419,7 +419,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:30080/invoices/create-invoice"
+						"url": "http://127.0.0.1:8000/invoices/create-invoice"
 					},
 					"response": []
 				}
@@ -449,7 +449,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://127.0.0.1:30080/call-receiver/phone-numbers?username=yodalpinky1",
+							"raw": "http://127.0.0.1:8000/call-receiver/phone-numbers?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
 								"otc-backend-service"
@@ -489,7 +489,7 @@
 								"disabled": true
 							}
 						],
-						"url": "http://127.0.0.1:30080/call-receiver/phone-numbers/username/yodalpinky1"
+						"url": "http://127.0.0.1:8000/call-receiver/phone-numbers/username/yodalpinky1"
 					},
 					"response": []
 				},
@@ -514,7 +514,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://127.0.0.1:30080/call-receiver/call-receivers?username=yodalpinky1",
+							"raw": "http://127.0.0.1:8000/call-receiver/call-receivers?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
 								"otc-backend-service"
@@ -571,7 +571,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:30080/call-receiver/add-receiver"
+						"url": "http://127.0.0.1:8000/call-receiver/add-receiver"
 					},
 					"response": []
 				},
@@ -595,7 +595,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:30080/callreceiver/phone-numbers/username=yodalpinky1"
+						"url": "http://127.0.0.1:8000/callreceiver/phone-numbers/username=yodalpinky1"
 					},
 					"response": []
 				}
@@ -609,7 +609,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://127.0.0.1:30080/api/calls/1"
+						"url": "http://127.0.0.1:8000/api/calls/1"
 					},
 					"response": []
 				},
@@ -627,7 +627,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:30080/api/calls/4"
+						"url": "http://127.0.0.1:8000/api/calls/4"
 					},
 					"response": []
 				},
@@ -652,7 +652,7 @@
 								"type": "text"
 							}
 						],
-						"url": "http://127.0.0.1:30080/calls/1"
+						"url": "http://127.0.0.1:8000/calls/1"
 					},
 					"response": []
 				},
@@ -670,7 +670,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:30080/calls/make-call"
+						"url": "http://127.0.0.1:8000/calls/make-call"
 					},
 					"response": []
 				},
@@ -688,7 +688,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:30080/invoices/create-invoice"
+						"url": "http://127.0.0.1:8000/invoices/create-invoice"
 					},
 					"response": []
 				},
@@ -706,7 +706,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:30080/calls/completed"
+						"url": "http://127.0.0.1:8000/calls/completed"
 					},
 					"response": []
 				},
@@ -716,7 +716,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:30080/calls?username=yodalpinky1",
+							"raw": "http://127.0.0.1:8000/calls?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
 								"otc-backend-service"
@@ -741,7 +741,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:30080/calls/user/yodalpinky1/calls?status=Paid",
+							"raw": "http://127.0.0.1:8000/calls/user/yodalpinky1/calls?status=Paid",
 							"protocol": "http",
 							"host": [
 								"otc-backend-service"
@@ -769,7 +769,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:30080/calls/user/yodalpinky1/calls?status=Pending Invoice",
+							"raw": "http://127.0.0.1:8000/calls/user/yodalpinky1/calls?status=Pending Invoice",
 							"protocol": "http",
 							"host": [
 								"otc-backend-service"
@@ -797,7 +797,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:30080/calls/user/yodalpinky1/calls?status=Invoiced",
+							"raw": "http://127.0.0.1:8000/calls/user/yodalpinky1/calls?status=Invoiced",
 							"protocol": "http",
 							"host": [
 								"otc-backend-service"
@@ -825,7 +825,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:30080/calls/user?username=yodalpinky1",
+							"raw": "http://127.0.0.1:8000/calls/user?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
 								"otc-backend-service"
@@ -850,7 +850,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://127.0.0.1:30080/api/calls/2"
+						"url": "http://127.0.0.1:8000/api/calls/2"
 					},
 					"response": []
 				},
@@ -863,7 +863,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:30080/callreceiver/tele?username=yodalpinky1",
+							"raw": "http://127.0.0.1:8000/callreceiver/tele?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
 								"otc-backend-service"
@@ -892,7 +892,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:30080/calls/paid?username=yodalpinky1",
+							"raw": "http://127.0.0.1:8000/calls/paid?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
 								"otc-backend-service"
@@ -921,7 +921,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:30080/calls/unpaid?username=yodalpinky1",
+							"raw": "http://127.0.0.1:8000/calls/unpaid?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
 								"otc-backend-service"
@@ -955,7 +955,7 @@
 								"type": "text"
 							}
 						],
-						"url": "http://127.0.0.1:30080/calls/paid"
+						"url": "http://127.0.0.1:8000/calls/paid"
 					},
 					"response": []
 				},
@@ -974,7 +974,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://127.0.0.1:30080/calls/paid?username=yodalpinky1",
+							"raw": "http://127.0.0.1:8000/calls/paid?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
 								"otc-backend-service"
