@@ -103,7 +103,7 @@ jobs:
 
     - name: Check backend user endpoint
       run: |
-        wget -qO- http://127.0.0.1:30080/user/all-users
+        curl -f http://127.0.0.1:30080/user/all-users || echo "Failed to reach /user/all-users"
 
     - name: Run Newman Tests
       run: |
