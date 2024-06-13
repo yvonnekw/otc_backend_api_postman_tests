@@ -43,7 +43,7 @@
 							"mode": "raw",
 							"raw": "{\n    \"paymentDate\":\"01/02/2024\",\n    \"fullNameOnPaymentCard\": \"Myfull Name\",\n    \"cardNumber\":\"4545676798341110\",\n   \"expiringDate\":\"12/09/2025\",\n   \"issueNumber\": \"123\",\n    \"securityNumber\": \"234\",\n     \"invoiceId\": 3,\n     \"status\":\"Paid\"\n}"
 						},
-						"url": "http://127.0.0.1:8000/payments/payment"
+						"url": "http://otc-backend-service:8000/payments/payment"
 					},
 					"response": []
 				},
@@ -79,7 +79,7 @@
 							"mode": "raw",
 							"raw": "{\n    //\"paymenrId\":2,\n    \"amount\":\"60\",\n    \"paymentDate\":\"01/02/2024\",\n    \"fullNameOnPaymentCard\": \"Myfull Name\",\n    \"cardNumber\":\"4545676798341110\",\n   \"expiringDate\":\"12/09/2025\",\n   \"issueNumber\": \"123\",\n    \"securityNumber\": \"234\",\n     \"invoice\" :{\n         \"invoiceId\": 1\n     },\n     \"status\":\"Paid\"\n}"
 						},
-						"url": "http://127.0.0.1:8000/payments/payment"
+						"url": "http://otc-backend-service:8000/payments/payment"
 					},
 					"response": []
 				},
@@ -117,7 +117,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://127.0.0.1:8000/payments/get-all-payments",
+							"raw": "http://otc-backend-service:8000/payments/get-all-payments",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -168,7 +168,7 @@
 							"mode": "raw",
 							"raw": "{\n //\"invoiceId\":2,\n   // \"invoiceDate\": \"27/02/2024\",\n    //\"totalAmount\":\"100\",\n    \"calls\": [\n        {\n            \"callId\": 1\n        },\n        {\n            \"callId\": 2\n        },\n         \n        {\n            \"callId\": 3\n        },\n        \n        {\n            \"callId\": 4\n        }\n    ],\n    \"status\":\"Invoiced\"\n}"
 						},
-						"url": "http://127.0.0.1:8000/invoices/create-invoice"
+						"url": "http://otc-backend-service:8000/invoices/create-invoice"
 					},
 					"response": []
 				},
@@ -214,7 +214,7 @@
 							"mode": "raw",
 							"raw": "{\n   \"callIds\": [3, 4]\n   //\"status\": \"Invoiced\"\n}"
 						},
-						"url": "http://127.0.0.1:8000/invoices/create-invoice"
+						"url": "http://otc-backend-service:8000/invoices/create-invoice"
 					},
 					"response": []
 				},
@@ -260,7 +260,7 @@
 							"mode": "raw",
 							"raw": "{\n   \"callIds\": [1]\n}"
 						},
-						"url": "http://127.0.0.1:8000/invoices/create-invoice"
+						"url": "http://otc-backend-service:8000/invoices/create-invoice"
 					},
 					"response": []
 				},
@@ -289,7 +289,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "http://127.0.0.1:8000/invoices/get-all-invoice"
+						"url": "http://otc-backend-service:8000/invoices/get-all-invoice"
 					},
 					"response": []
 				},
@@ -318,7 +318,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "http://127.0.0.1:8000/invoices/get-invoice-callIds"
+						"url": "http://otc-backend-service:8000/invoices/get-invoice-callIds"
 					},
 					"response": []
 				},
@@ -347,7 +347,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "http://127.0.0.1:8000/invoices/1"
+						"url": "http://otc-backend-service:8000/invoices/1"
 					},
 					"response": []
 				},
@@ -377,10 +377,10 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/invoices/1?userId=yodalpinky1&netCost=0&invoiceId=1",
+							"raw": "http://otc-backend-service:8000/invoices/1?userId=yodalpinky1&netCost=0&invoiceId=1",
 							"protocol": "http",
 							"host": [
-								"127.0.0.1"
+								"otc-backend-service"
 							],
 							"port": "8000",
 							"path": [
@@ -419,7 +419,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/invoices/create-invoice"
+						"url": "http://otc-backend-service:8000/invoices/create-invoice"
 					},
 					"response": []
 				}
@@ -449,10 +449,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://127.0.0.1:8000/call-receiver/phone-numbers?username=yodalpinky1",
+							"raw": "http://otc-backend-service:8000/call-receiver/phone-numbers?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
-								"127.0.0.1"
+								"otc-backend-service"
 							],
 							"port": "8000",
 							"path": [
@@ -489,7 +489,7 @@
 								"disabled": true
 							}
 						],
-						"url": "http://127.0.0.1:8000/call-receiver/phone-numbers/username/yodalpinky1"
+						"url": "http://otc-backend-service:8000/call-receiver/phone-numbers/username/yodalpinky1"
 					},
 					"response": []
 				},
@@ -514,10 +514,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://127.0.0.1:8000/call-receiver/call-receivers?username=yodalpinky1",
+							"raw": "http://otc-backend-service:8000/call-receiver/call-receivers?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
-								"127.0.0.1"
+								"otc-backend-service"
 							],
 							"port": "8000",
 							"path": [
@@ -571,7 +571,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/call-receiver/add-receiver"
+						"url": "http://otc-backend-service:8000/call-receiver/add-receiver"
 					},
 					"response": []
 				},
@@ -595,7 +595,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/callreceiver/phone-numbers/username=yodalpinky1"
+						"url": "http://otc-backend-service:8000/callreceiver/phone-numbers/username=yodalpinky1"
 					},
 					"response": []
 				}
@@ -609,7 +609,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/calls/1"
+						"url": "http://otc-backend-service:8000/api/calls/1"
 					},
 					"response": []
 				},
@@ -627,7 +627,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/api/calls/4"
+						"url": "http://otc-backend-service:8000/api/calls/4"
 					},
 					"response": []
 				},
@@ -652,7 +652,7 @@
 								"type": "text"
 							}
 						],
-						"url": "http://127.0.0.1:8000/calls/1"
+						"url": "http://otc-backend-service:8000/calls/1"
 					},
 					"response": []
 				},
@@ -670,7 +670,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/calls/make-call"
+						"url": "http://otc-backend-service:8000/calls/make-call"
 					},
 					"response": []
 				},
@@ -688,7 +688,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/invoices/create-invoice"
+						"url": "http://otc-backend-service:8000/invoices/create-invoice"
 					},
 					"response": []
 				},
@@ -706,7 +706,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/calls/completed"
+						"url": "http://otc-backend-service:8000/calls/completed"
 					},
 					"response": []
 				},
@@ -716,10 +716,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/calls?username=yodalpinky1",
+							"raw": "http://otc-backend-service:8000/calls?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
-								"127.0.0.1"
+								"otc-backend-service"
 							],
 							"port": "8000",
 							"path": [
@@ -741,10 +741,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/calls/user/yodalpinky1/calls?status=Paid",
+							"raw": "http://otc-backend-service:8000/calls/user/yodalpinky1/calls?status=Paid",
 							"protocol": "http",
 							"host": [
-								"127.0.0.1"
+								"otc-backend-service"
 							],
 							"port": "8000",
 							"path": [
@@ -769,10 +769,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/calls/user/yodalpinky1/calls?status=Pending Invoice",
+							"raw": "http://otc-backend-service:8000/calls/user/yodalpinky1/calls?status=Pending Invoice",
 							"protocol": "http",
 							"host": [
-								"127.0.0.1"
+								"otc-backend-service"
 							],
 							"port": "8000",
 							"path": [
@@ -797,10 +797,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/calls/user/yodalpinky1/calls?status=Invoiced",
+							"raw": "http://otc-backend-service:8000/calls/user/yodalpinky1/calls?status=Invoiced",
 							"protocol": "http",
 							"host": [
-								"127.0.0.1"
+								"otc-backend-service"
 							],
 							"port": "8000",
 							"path": [
@@ -825,10 +825,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/calls/user?username=yodalpinky1",
+							"raw": "http://otc-backend-service:8000/calls/user?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
-								"127.0.0.1"
+								"otc-backend-service"
 							],
 							"port": "8000",
 							"path": [
@@ -850,7 +850,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/calls/2"
+						"url": "http://otc-backend-service:8000/api/calls/2"
 					},
 					"response": []
 				},
@@ -863,10 +863,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/callreceiver/tele?username=yodalpinky1",
+							"raw": "http://otc-backend-service:8000/callreceiver/tele?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
-								"127.0.0.1"
+								"otc-backend-service"
 							],
 							"port": "8000",
 							"path": [
@@ -892,10 +892,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/calls/paid?username=yodalpinky1",
+							"raw": "http://otc-backend-service:8000/calls/paid?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
-								"127.0.0.1"
+								"otc-backend-service"
 							],
 							"port": "8000",
 							"path": [
@@ -921,10 +921,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/calls/unpaid?username=yodalpinky1",
+							"raw": "http://otc-backend-service:8000/calls/unpaid?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
-								"127.0.0.1"
+								"otc-backend-service"
 							],
 							"port": "8000",
 							"path": [
@@ -955,7 +955,7 @@
 								"type": "text"
 							}
 						],
-						"url": "http://127.0.0.1:8000/calls/paid"
+						"url": "http://otc-backend-service:8000/calls/paid"
 					},
 					"response": []
 				},
@@ -974,10 +974,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://127.0.0.1:8000/calls/paid?username=yodalpinky1",
+							"raw": "http://otc-backend-service:8000/calls/paid?username=yodalpinky1",
 							"protocol": "http",
 							"host": [
-								"127.0.0.1"
+								"otc-backend-service"
 							],
 							"port": "8000",
 							"path": [
@@ -1009,10 +1009,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://127.0.0.1:8000/calls/unpaid",
+							"raw": "http://otc-backend-service:8000/calls/unpaid",
 							"protocol": "http",
 							"host": [
-								"127.0.0.1"
+								"otc-backend-service"
 							],
 							"port": "8000",
 							"path": [
@@ -1044,7 +1044,7 @@
 								"type": "text"
 							}
 						],
-						"url": "http://127.0.0.1:8000/calls/get-all-calls"
+						"url": "http://otc-backend-service:8000/calls/get-all-calls"
 					},
 					"response": []
 				}
@@ -1073,7 +1073,7 @@
 								"type": "text"
 							}
 						],
-						"url": "http://127.0.0.1:8000/user/all-users"
+						"url": "http://otc-backend-service:8000/user/all-users"
 					},
 					"response": []
 				},
@@ -1099,7 +1099,7 @@
 							"mode": "raw",
 							"raw": "{\n //\"userId\": \"1\",\n \"firstName\": \"Myfirstname\",\n \"lastName\": \"lastname\",\n \"emailAddress\": \"my email@mail.com\",\n \"telephoneNumber\": \"09874653234\",\n  \"password\": \"pwd3\",\n  \"authorities\": []\n}"
 						},
-						"url": "http://127.0.0.1:8000/user/register"
+						"url": "http://otc-backend-service:8000/user/register"
 					},
 					"response": []
 				},
@@ -1109,10 +1109,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/callreceiver/phone-exists?username=yodalpinky1&telephone=032456776580",
+							"raw": "http://otc-backend-service:8000/callreceiver/phone-exists?username=yodalpinky1&telephone=032456776580",
 							"protocol": "http",
 							"host": [
-								"127.0.0.1"
+								"otc-backend-service"
 							],
 							"port": "8000",
 							"path": [
@@ -1144,7 +1144,7 @@
 						},
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/user"
+						"url": "http://otc-backend-service:8000/user"
 					},
 					"response": []
 				},
@@ -1165,7 +1165,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/auth/register"
+						"url": "http://otc-backend-service:8000/auth/register"
 					},
 					"response": []
 				},
@@ -1189,7 +1189,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/auth/login"
+						"url": "http://otc-backend-service:8000/auth/login"
 					},
 					"response": []
 				},
@@ -1213,7 +1213,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/auth/login"
+						"url": "http://otc-backend-service:8000/auth/login"
 					},
 					"response": []
 				},
@@ -1229,10 +1229,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/auth/username",
+							"raw": "http://otc-backend-service:8000/auth/username",
 							"protocol": "http",
 							"host": [
-								"127.0.0.1"
+								"otc-backend-service"
 							],
 							"port": "8000",
 							"path": [
@@ -1264,7 +1264,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/auth/login"
+						"url": "http://otc-backend-service:8000/auth/login"
 					},
 					"response": []
 				},
@@ -1279,7 +1279,7 @@
 						},
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/user/verify"
+						"url": "http://otc-backend-service:8000/user/verify"
 					},
 					"response": []
 				},
@@ -1288,7 +1288,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/users/user/1"
+						"url": "http://otc-backend-service:8000/users/user/1"
 					},
 					"response": []
 				},
@@ -1297,7 +1297,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/auth"
+						"url": "http://otc-backend-service:8000/auth"
 					},
 					"response": []
 				},
@@ -1309,7 +1309,7 @@
 						},
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/user/yodalpinky1"
+						"url": "http://otc-backend-service:8000/user/yodalpinky1"
 					},
 					"response": []
 				}
@@ -1336,7 +1336,7 @@
 						}
 					}
 				},
-				"url": "http://127.0.0.1:8000/user/mess-publisher"
+				"url": "http://otc-backend-service:8000/user/mess-publisher"
 			},
 			"response": []
 		}
