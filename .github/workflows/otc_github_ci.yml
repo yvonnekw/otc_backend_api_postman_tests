@@ -14,9 +14,6 @@ jobs:
     services:
       minikube:
         image: gcr.io/k8s-minikube/kicbase:v0.0.30
-        #options: >-
-          #--memory=2g
-          #--cpus=2
         ports:
           - 8000:8000
 
@@ -65,7 +62,7 @@ jobs:
         kubectl apply -f ./k8s/postgres-service.yaml
     
     - name: Wait for PostgreSQL to be ready
-      run: kubectl rollout status deployment/postgres
+      run: kubectl rollout status deployment/postgres || kubectl describe pod $(kubectl get pods --selector=app=postgres -o jsonpath='{.items[0].metadata.name}') || kubectl logs $(kubectl get pods --selector=app=postgres -o jsonpath='{.items[0].metadata.name}')
 
     - name: Check PostgreSQL Service
       run: kubectl get services postgres
@@ -75,7 +72,6 @@ jobs:
         export POSTGRES_USER=$(echo "${{ secrets.POSTGRES_USER }}" | base64 -d)
         export POSTGRES_PASSWORD=$(echo "${{ secrets.POSTGRES_PASSWORD }}" | base64 -d)
 
-          
         until pg_isready -h postgres -U $POSTGRES_USER; do
           echo "Waiting for PostgreSQL..."
           sleep 5
@@ -101,9 +97,6 @@ jobs:
 
     - name: Install Newman
       run: npm install -g newman
-
-    #- name: Forward backend port
-      #run: kubectl port-forward service/otc-backend-service 8000:8000 &
 
     - name: Run Postman tests
       run: newman run https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/fix_github_actions/collections/otc-for-ci.postman_collection.json -e https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_environment.json --global-var "baseUrl=http://127.0.0.1:8000" --delay-request 1000
