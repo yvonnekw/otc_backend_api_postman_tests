@@ -62,18 +62,17 @@ jobs:
         kubectl apply -f ./k8s/postgres-service.yaml
     
     #- name: Wait for PostgreSQL to be ready
-      #run: |
+     # run: |
        # kubectl rollout status deployment/postgres || \
-       # kubectl describe pod $(kubectl get pods --selector=app=postgres -o jsonpath='{.items[0].metadata.name}') || \
+        #kubectl describe pod $(kubectl get pods --selector=app=postgres -o jsonpath='{.items[0].metadata.name}') || \
        # kubectl logs $(kubectl get pods --selector=app=postgres -o jsonpath='{.items[0].metadata.name}')
 
-    - name: Check PostgreSQL Service
-      run: kubectl get services postgres
-
-    - name: Set PostgreSQL password
+    - name: Set PostgreSQL password and check service
       run: |
         export POSTGRES_USER=$(echo "${{ secrets.POSTGRES_USER }}" | base64 -d)
         export POSTGRES_PASSWORD=$(echo "${{ secrets.POSTGRES_PASSWORD }}" | base64 -d)
+
+        kubectl get services postgres
 
         until pg_isready -h postgres -U "$POSTGRES_USER"; do
           echo "Waiting for PostgreSQL..."
