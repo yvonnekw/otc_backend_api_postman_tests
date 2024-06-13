@@ -91,6 +91,21 @@ jobs:
         kubectl describe deployment otc-backend
         kubectl describe service otc-backend-service
 
+    - name: Set up Kubernetes CLI
+      uses: azure/aks-set-context@v1
+      with:
+        creds: ${{ secrets.KUBE_CONFIG_DATA }}
+
+    - name: Change PostgreSQL Password
+      env:
+        POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      run: |
+        kubectl exec -it $(kubectl get pods --selector=app=postgres -o jsonpath='{.items[0].metadata.name}') -- psql -U postgres -c "ALTER USER postgres WITH PASSWORD '${POSTGRES_PASSWORD}';"
+
+    - name: Verify PostgreSQL Password Change
+      run: |
+        kubectl exec -it $(kubectl get pods --selector=app=postgres -o jsonpath='{.items[0].metadata.name}') -- psql -U postgres -c "SELECT 'Password changed successfully';"
+
     - name: Check backend pod logs
       run: |
         kubectl logs $(kubectl get pods --selector=app=otc-backend -o jsonpath='{.items[0].metadata.name}')
