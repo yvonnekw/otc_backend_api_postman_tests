@@ -1,4 +1,4 @@
-name: otc postman CI
+name: otc postman CI - new
 
 on:
   workflow_dispatch:
@@ -19,6 +19,10 @@ jobs:
           #--cpus=2
         ports:
           - 8000:8000
+
+    env:
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
 
     steps:
     - name: Checkout code
@@ -59,6 +63,13 @@ jobs:
       run: | 
         kubectl apply -f ./k8s/postgres-deployment.yaml
         kubectl apply -f ./k8s/postgres-service.yaml
+
+    - name: Set up PostgreSQL
+      run: |
+        # Decode secrets to use in commands
+        export POSTGRES_USER=$(echo "${{ secrets.POSTGRES_USER }}" | base64 -d)
+        export POSTGRES_PASSWORD=$(echo "${{ secrets.POSTGRES_PASSWORD }}" | base64 -d)
+        psql -h your_postgres_host -U $POSTGRES_USER -c "ALTER USER postgres WITH PASSWORD '${POSTGRES_PASSWORD}';"
 
     - name: Apply Kubernetes manifests
       run: |
