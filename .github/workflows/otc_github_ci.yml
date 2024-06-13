@@ -69,7 +69,7 @@ jobs:
         # Decode secrets to use in commands
         export POSTGRES_USER=$(echo "${{ secrets.POSTGRES_USER }}" | base64 -d)
         export POSTGRES_PASSWORD=$(echo "${{ secrets.POSTGRES_PASSWORD }}" | base64 -d)
-        psql -h Postgres -U $POSTGRES_USER -c "ALTER USER postgres WITH PASSWORD '${POSTGRES_PASSWORD}';"
+        psql -h postgres -U $POSTGRES_USER -c "ALTER USER postgres WITH PASSWORD '${POSTGRES_PASSWORD}';"
 
     - name: Apply Kubernetes manifests
       run: |
