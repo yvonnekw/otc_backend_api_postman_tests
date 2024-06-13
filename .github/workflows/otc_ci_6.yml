@@ -1,4 +1,4 @@
-name: otc postman CI - 5
+name: otc postman CI - 6
 
 on:
   workflow_dispatch:
