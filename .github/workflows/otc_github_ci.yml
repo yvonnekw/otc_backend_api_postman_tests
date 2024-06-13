@@ -90,8 +90,8 @@ jobs:
     - name: Install Newman
       run: npm install -g newman
 
-    - name: Forward backend port
-      run: kubectl port-forward service/otc-backend-service 8000:8000 &
+    #- name: Forward backend port
+      #run: kubectl port-forward service/otc-backend-service 8000:8000 &
 
     - name: Run Postman tests
       run: newman run https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/fix_github_actions/collections/otc-for-ci.postman_collection.json -e https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_environment.json --global-var "baseUrl=http://127.0.0.1:8000" --delay-request 1000
