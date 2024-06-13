@@ -51,7 +51,7 @@ jobs:
       run: kubectl apply -f ./k8s/postgres-secret.yaml
 
     - name: Apply PostgreSQL ConfigMap
-      run: kubectl apply -f ./k8s/otc-postgres-configMap.yaml
+      run: kubectl apply -f ./k8s/otc-postgres-config.yaml
 
     - name: Apply PostgreSQL PV
       run: kubectl apply -f ./k8s/postgres-pv.yaml
@@ -65,25 +65,23 @@ jobs:
         kubectl apply -f ./k8s/postgres-service.yaml
     
     - name: Wait for PostgreSQL to be ready
-      run: |
-        kubectl rollout status deployment/postgres
+      run: kubectl rollout status deployment/postgres
 
     - name: Check PostgreSQL Service
       run: kubectl get services postgres
 
     - name: Set PostgreSQL password
       run: |
-          # Decode secrets to use in commands
-          export POSTGRES_USER=$(echo "${{ secrets.POSTGRES_USER }}" | base64 -d)
-          export POSTGRES_PASSWORD=$(echo "${{ secrets.POSTGRES_PASSWORD }}" | base64 -d)
+        export POSTGRES_USER=$(echo "${{ secrets.POSTGRES_USER }}" | base64 -d)
+        export POSTGRES_PASSWORD=$(echo "${{ secrets.POSTGRES_PASSWORD }}" | base64 -d)
 
-          # Wait for PostgreSQL to be ready
-          until pg_isready -h postgres -U $POSTGRES_USER; do
-            echo "Waiting for PostgreSQL..."
-            sleep 5
-          done
+          
+        until pg_isready -h postgres -U $POSTGRES_USER; do
+          echo "Waiting for PostgreSQL..."
+          sleep 5
+        done
 
-          PGPASSWORD=$POSTGRES_PASSWORD psql -h postgres -U $POSTGRES_USER -c "ALTER USER postgres WITH PASSWORD '${POSTGRES_PASSWORD}';"
+        PGPASSWORD=$POSTGRES_PASSWORD psql -h postgres -U $POSTGRES_USER -c "ALTER USER $POSTGRES_USER WITH PASSWORD '${POSTGRES_PASSWORD}';"
     
     - name: Apply Kubernetes manifests
       run: |

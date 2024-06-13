@@ -6,5 +6,3 @@ metadata:
     app: postgres
 data:
   POSTGRES_DB: otcDb
-  POSTGRES_USER: cG9zdGdyZXM=
-  POSTGRES_PASSWORD: TXlwYXNzd29yZDEyMzQ=
