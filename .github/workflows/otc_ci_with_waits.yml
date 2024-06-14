@@ -63,9 +63,6 @@ jobs:
         kubectl apply -f ./k8s/postgres-service.yaml
 
 
-    - name: Get PostgreSQL Pod Logs
-      run: |
-        kubectl logs $(kubectl get pods --selector=app=postgres -o jsonpath='{.items[0].metadata.name}')
 
     - name: Check PostgreSQL Service
       run: kubectl get services postgres
