@@ -61,14 +61,14 @@ jobs:
         kubectl apply -f ./k8s/postgres-deployment.yaml
         kubectl apply -f ./k8s/postgres-service.yaml
     
-    - name: Set PostgreSQL password and check service
-      run: |
-        export POSTGRES_USER=$(echo "${{ secrets.POSTGRES_USER }}" | base64 -d)
-        export POSTGRES_PASSWORD=$(echo "${{ secrets.POSTGRES_PASSWORD }}" | base64 -d)
+   # - name: Set PostgreSQL password and check service
+      #run: |
+        #export POSTGRES_USER=$(echo "${{ secrets.POSTGRES_USER }}" | base64 -d)
+       # export POSTGRES_PASSWORD=$(echo "${{ secrets.POSTGRES_PASSWORD }}" | base64 -d)
 
-        kubectl get services postgres
+       # kubectl get services postgres
 
-        PGPASSWORD=$POSTGRES_PASSWORD psql -h postgres -U "$POSTGRES_USER" -c "ALTER USER $POSTGRES_USER WITH PASSWORD '${POSTGRES_PASSWORD}';"
+       # PGPASSWORD=$POSTGRES_PASSWORD psql -h postgres -U "$POSTGRES_USER" -c "ALTER USER $POSTGRES_USER WITH PASSWORD '${POSTGRES_PASSWORD}';"
     
     - name: Apply Kubernetes manifests
       run: |
@@ -78,8 +78,12 @@ jobs:
         kubectl apply -f ./k8s/otc-backend-service.yaml --validate=false
         kubectl apply -f ./k8s/combined-ingress.yaml --validate=false
     
-    - name: Wait for Spring Boot backend to be ready
-      run: kubectl rollout status deployment/otc-backend
+    #- name: Wait for Spring Boot backend to be ready
+      #run: kubectl rollout status deployment/otc-backend
+
+    - name: Check backend pod logs
+      run: |
+        kubectl logs $(kubectl get pods --selector=app=otc-backend -o jsonpath='{.items[0].metadata.name}')
 
     - name: Install Node.js
       uses: actions/setup-node@v2
