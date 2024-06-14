@@ -71,9 +71,9 @@ jobs:
       run: |
         kubectl apply -f ./k8s/rabbitmq-deployment.yaml
         kubectl apply -f ./k8s/rabbitmq-service.yaml
-        kubectl apply -f ./k8s/otc-backend-deployment.yaml --validate=false
-        kubectl apply -f ./k8s/otc-backend-service.yaml --validate=false
-        kubectl apply -f ./k8s/combined-ingress.yaml --validate=false
+        kubectl apply -f ./k8s/otc-backend-deployment.yaml
+        kubectl apply -f ./k8s/otc-backend-service.yaml
+        kubectl apply -f ./k8s/combined-ingress.yaml
 
     
     - name: Install Node.js
@@ -83,14 +83,6 @@ jobs:
 
     - name: Install Newman
       run: npm install -g newman
-
-    - name: Wait for Spring Boot backend to be ready
-      run: |
-        kubectl rollout status deployment/otc-backend --timeout=300s
-
-    - name: Check backend pod logs
-      run: |
-        kubectl logs $(kubectl get pods --selector=app=otc-backend -o jsonpath='{.items[0].metadata.name}')
 
 
     - name: List all pods and services
@@ -102,6 +94,16 @@ jobs:
       run: |
         kubectl describe deployment otc-backend
         kubectl describe service otc-backend-service
+
+    - name: Wait for Spring Boot backend to be ready
+      run: |
+        kubectl rollout status deployment/otc-backend --timeout=300s
+
+    - name: Check backend pod logs
+      run: |
+        kubectl logs $(kubectl get pods --selector=app=otc-backend -o jsonpath='{.items[0].metadata.name}')
+
+
 
     - name: Run Postman tests
       run: newman run https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/fix_github_actions/collections/otc-for-ci.postman_collection.json -e https://raw.githubusercontent.com/yvonnekw/otc_backend_api_postman_tests/main/collections/otc.postman_environment.json --global-var "baseUrl=http://otc-backend-service:8000" --delay-request 1000
