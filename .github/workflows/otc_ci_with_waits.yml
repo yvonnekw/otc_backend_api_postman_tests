@@ -1,4 +1,4 @@
-name: otc postman CI - new - with waits
+name: otc postman CI - new with waits
 
 on:
   workflow_dispatch:
