@@ -47,7 +47,7 @@ jobs:
       run: kubectl apply -f ./k8s/postgres-secret.yaml
 
     - name: Apply PostgreSQL ConfigMap
-      run: kubectl apply -f ./k8s/otc-postgres-configMap.yaml
+      run: kubectl apply -f ./k8s/otc-postgres-config.yaml
 
     - name: Apply PostgreSQL PV
       run: kubectl apply -f ./k8s/postgres-pv.yaml
