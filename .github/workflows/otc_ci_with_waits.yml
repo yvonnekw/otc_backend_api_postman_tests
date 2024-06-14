@@ -62,12 +62,6 @@ jobs:
         kubectl apply -f ./k8s/postgres-deployment.yaml
         kubectl apply -f ./k8s/postgres-service.yaml
 
- 
-
-    - name: Check PostgreSQL Pod Status
-      run: |
-        kubectl get pods -l app=postgres
-        kubectl describe pods -l app=postgres
 
     - name: Get PostgreSQL Pod Logs
       run: |
