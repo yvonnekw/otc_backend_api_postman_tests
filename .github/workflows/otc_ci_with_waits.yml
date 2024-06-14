@@ -1,4 +1,4 @@
-name: otc postman CI - new
+name: otc postman CI - with new waits
 
 on:
   workflow_dispatch:
@@ -62,13 +62,13 @@ jobs:
         kubectl apply -f ./k8s/postgres-deployment.yaml
         kubectl apply -f ./k8s/postgres-service.yaml
     
-    - name: Wait for PostgreSQL to be ready
-      run: |
-        kubectl rollout status deployment/postgres
-        until kubectl get pods --selector=app=postgres -o jsonpath='{.items[0].status.containerStatuses[0].ready}' | grep -q "true"; do
-          echo "Waiting for PostgreSQL to be ready..."
-          sleep 5
-        done
+   # - name: Wait for PostgreSQL to be ready
+      #run: |
+       # kubectl rollout status deployment/postgres
+        #until kubectl get pods --selector=app=postgres -o jsonpath='{.items[0].status.containerStatuses[0].ready}' | grep -q "true"; do
+          #echo "Waiting for PostgreSQL to be ready..."
+          #sleep 5
+        #done
 
     - name: Check PostgreSQL Service
       run: kubectl get services postgres
