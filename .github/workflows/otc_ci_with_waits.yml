@@ -1,4 +1,4 @@
-name: otc postman CI - with new waits
+name: otc postman CI - new - with waits
 
 on:
   workflow_dispatch:
@@ -61,14 +61,19 @@ jobs:
       run: | 
         kubectl apply -f ./k8s/postgres-deployment.yaml
         kubectl apply -f ./k8s/postgres-service.yaml
-    
-   # - name: Wait for PostgreSQL to be ready
-      #run: |
-       # kubectl rollout status deployment/postgres
-        #until kubectl get pods --selector=app=postgres -o jsonpath='{.items[0].status.containerStatuses[0].ready}' | grep -q "true"; do
-          #echo "Waiting for PostgreSQL to be ready..."
-          #sleep 5
-        #done
+
+    - name: Wait for PostgreSQL to be ready
+      run: |
+        kubectl rollout status deployment/postgres --timeout=300s
+
+    - name: Check PostgreSQL Pod Status
+      run: |
+        kubectl get pods -l app=postgres
+        kubectl describe pods -l app=postgres
+
+    - name: Get PostgreSQL Pod Logs
+      run: |
+        kubectl logs $(kubectl get pods --selector=app=postgres -o jsonpath='{.items[0].metadata.name}')
 
     - name: Check PostgreSQL Service
       run: kubectl get services postgres
@@ -80,14 +85,10 @@ jobs:
         kubectl apply -f ./k8s/otc-backend-deployment.yaml --validate=false
         kubectl apply -f ./k8s/otc-backend-service.yaml --validate=false
         kubectl apply -f ./k8s/combined-ingress.yaml --validate=false
-    
+
     - name: Wait for Spring Boot backend to be ready
       run: |
-        kubectl rollout status deployment/otc-backend
-        until kubectl get pods --selector=app=otc-backend -o jsonpath='{.items[0].status.containerStatuses[0].ready}' | grep -q "true"; do
-          echo "Waiting for Spring Boot backend to be ready..."
-          sleep 5
-        done
+        kubectl rollout status deployment/otc-backend --timeout=300s
 
     - name: Check backend pod logs
       run: |
