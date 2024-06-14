@@ -62,9 +62,7 @@ jobs:
         kubectl apply -f ./k8s/postgres-deployment.yaml
         kubectl apply -f ./k8s/postgres-service.yaml
 
-    - name: Wait for PostgreSQL to be ready
-      run: |
-        kubectl rollout status deployment/postgres --timeout=300s
+ 
 
     - name: Check PostgreSQL Pod Status
       run: |
