@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: otc-frontend-service
+  labels:
+    app: otc-frontend
+spec:
+  selector:
+    app: otc-frontend
+  ports:
+    - protocol: TCP
+      port: 2000
+      targetPort: 2000
+  type: ClusterIP
